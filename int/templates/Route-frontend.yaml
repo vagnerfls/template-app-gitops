@@ -1,4 +1,4 @@
-{{- if .Values.route -}}
+{{- if .Values.frontend.route -}}
 
 kind: Route
 apiVersion: route.openshift.io/v1
