@@ -1,0 +1,31 @@
+backend:
+  enabled: true
+  replicas: 1
+  containerPort: 8080
+  cpuLimit: 600m
+  cpuRequest: 300m
+  memoryLimit: 512Mi
+  memoryRequest: 384Mi
+  route: false
+  imageStream: false
+  
+  
+  
+  env:
+    - name: env
+      value: >-
+        TZ=America/Recife
+        DB_APP_URL=jdbc:exemplo
+        DB_APP_USER=exemplo
+        DB_APP_PASSWORD=exemplo
+
+frontend:
+  enabled: true
+  replicas: 1
+  containerPort: 8080
+  cpuLimit: 10m
+  cpuRequest: 10m
+  memoryLimit: 32Mi
+  memoryRequest: 32Mi
+  route: false
+  imageStream: false  

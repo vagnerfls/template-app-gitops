@@ -1,0 +1,19 @@
+{{- if .Values.route -}}
+
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: {{ .Release.Name }}-backend
+
+spec:
+  host: env-{{ .Release.Name }}-backend.apps.ocp.sefaz.pe.gov.br
+  to:
+    kind: Service
+    name: {{ .Release.Name }}-backend
+  port:
+    targetPort: http
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+
+{{- end -}}

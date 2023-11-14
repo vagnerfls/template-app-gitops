@@ -1,0 +1,15 @@
+{{- if .Values.backend.enabled -}}
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-backend
+spec:
+  selector:
+    app: {{ .Release.Name }}-backend
+  ports:
+  - name: http
+    port: {{ .Values.backend.containerPort }}
+    targetPort: http
+
+{{- end -}}

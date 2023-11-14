@@ -1,0 +1,13 @@
+{{- if .Values.imageStream -}}
+
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+
+metadata: 
+  name: {{ .Release.Name }}-frontend
+
+spec:
+  lookupPolicy:
+    local: true
+
+{{- end -}}
