@@ -18,6 +18,19 @@ backend:
       value: >-
         TZ=America/Recife
 
+
+  livenessProbe:
+    initialDelaySeconds: 105
+    httpGet:
+      path: /actuator/health/liveness
+      port: http
+
+  readinessProbe:
+    initialDelaySeconds: 105
+    httpGet:
+      path: /actuator/health/readiness
+      port: http
+
 frontend:
   enabled: true
   replicas: 1

@@ -27,7 +27,20 @@ backend:
           value: "exemplo"
         - name: DB_APP_PASS
           value: "exemplo"
+  
+  livenessProbe:
+    initialDelaySeconds: 105
+    httpGet:
+      path: /actuator/health/liveness
+      port: http
 
+  readinessProbe:
+    initialDelaySeconds: 105
+    httpGet:
+      path: /actuator/health/readiness
+      port: http
+  
+  
 frontend:
   enabled: true
   replicas: 1
@@ -38,3 +51,5 @@ frontend:
   memoryRequest: 32Mi
   route: true
   imageStream: true  
+
+
