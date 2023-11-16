@@ -41,3 +41,15 @@ frontend:
   memoryRequest: 32Mi
   route: true
   imageStream: true  
+
+secrets:
+  - name: dbsource
+    keys:
+      - name: DB_APP_URL
+        value: "jdbc:exemplo"
+        encoded: false
+      - name: DB_APP_USER
+        value: "exemplo"
+        encoded: false
+      - name: DB_APP_PASS
+        value: "exemplo"  
