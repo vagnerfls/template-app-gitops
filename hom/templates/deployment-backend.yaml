@@ -1,7 +1,7 @@
 {{- if .Values.backend.enabled -}}
 
 {{- if .Release.Name }}
-{{ $name := .Release.Name | trimSuffix "hom"}}
+{{ rage $name := .Release.Name | trimSuffix "hom" }}
 
 kind: Deployment
 apiVersion: apps/v1
@@ -61,5 +61,6 @@ spec:
             {{- toYaml .Values.backend.readinessProbe | nindent 12}}
 
 {{- end -}}
+
 {{- end -}}
 {{- end -}}
