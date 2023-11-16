@@ -1,12 +1,11 @@
-{{- if .Release.Name }}
-{{ range $name := .Release.Name | trimSuffix "hom" }}
-
----
 {{- if .Values.backend.enabled -}}
 
 kind: Deployment
 apiVersion: apps/v1
 metadata:
+
+{{ $name := .Release.Name | trimSuffix "hom" }}
+
   name: {{ $name }}-backend
 
   annotations:
@@ -61,8 +60,4 @@ spec:
           readinessProbe:
             {{- toYaml .Values.backend.readinessProbe | nindent 12}}
 
-{{- end -}}
-
----
-{{- end -}}
 {{- end -}}
