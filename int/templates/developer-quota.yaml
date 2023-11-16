@@ -3,7 +3,6 @@ kind: ResourceQuota
 
 metadata:
   name: developer-quota
-  namespace: gof-int
   annotations:
     openshift.io/description: >-
       Limites totais de recursos que podem ser criados pela equipe de desenvolvimento.

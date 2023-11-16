@@ -4,7 +4,7 @@ apiVersion: image.openshift.io/v1
 kind: ImageStream
 
 metadata: 
-  name: {{ .Values.applicationName }}-frontend
+  name: {{ .Release.Name }}-frontend
 
 
 spec:

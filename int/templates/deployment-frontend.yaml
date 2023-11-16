@@ -3,16 +3,16 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-  name: {{ .Values.applicationName }}-frontend
+  name: {{ .Release.Name }}-frontend
 
   annotations:
     image.openshift.io/triggers: |
       [
         {"from":
           {"kind":"ImageStreamTag"
-            , "name":"{{ .Values.applicationName }}-frontend:latest"
+            , "name":"{{ .Release.Name }}-frontend:latest"
           }
-          , "fieldPath":"spec.template.spec.containers[?(@.name==\"{{ .Values.applicationName }}-frontend\")].image"
+          , "fieldPath":"spec.template.spec.containers[?(@.name==\"{{ .Release.Name }}-frontend\")].image"
         }
       ]
 
@@ -21,15 +21,15 @@ spec:
   replicas: {{ .Values.frontend.replicas }}
   selector:
     matchLabels:
-      app: {{ .Values.applicationName }}-frontend
+      app: {{ .Release.Name }}-frontend
   template:
     metadata:
       labels:
-        app: {{ .Values.applicationName }}-frontend
+        app: {{ .Release.Name }}-frontend
     spec:
       containers:
-        - name: {{ .Values.applicationName }}-frontend
-          image: {{ .Values.applicationName }}-frontend:latest
+        - name: {{ .Release.Name }}-frontend
+          image: {{ .Release.Name }}-frontend:latest
           ports:
             - containerPort: {{ .Values.frontend.containerPort }}
               protocol: TCP
@@ -44,13 +44,13 @@ spec:
 
             livenessProbe:
               httpGet:
-                path: /{{ .Values.applicationName }}/
+                path: /{{ .Release.Name }}/
                 port: 8080
               initialDelaySeconds: 3
               periodSeconds: 3
             readinessProbe:
               httpGet:
-                path: /{{ .Values.applicationName }}/
+                path: /{{ .Release.Name }}/
                 port: 8080
               initialDelaySeconds: 3
               periodSeconds: 3
