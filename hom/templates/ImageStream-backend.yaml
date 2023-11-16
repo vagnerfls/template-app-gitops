@@ -5,7 +5,7 @@ kind: ImageStream
 
 metadata: 
   name: {{ .Values.applicationName }}-backend
-  namespace: {{ .Values.applicationName }}-int
+  namespace: {{ .Values.applicationName }}-hom
 
 spec:
   lookupPolicy:

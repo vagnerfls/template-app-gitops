@@ -4,10 +4,10 @@ kind: Route
 apiVersion: route.openshift.io/v1
 metadata:
   name: {{ .Values.applicationName }}-backend
-  namespace: {{ .Values.applicationName }}-int
+  namespace: {{ .Values.applicationName }}-hom
 
 spec:
-  host: int-{{ .Values.applicationName }}-backend.apps.ocp.sefaz.pe.gov.br
+  host: hom-{{ .Values.applicationName }}-backend.apps.ocp.sefaz.pe.gov.br
   to:
     kind: Service
     name: {{ .Values.applicationName }}-backend
