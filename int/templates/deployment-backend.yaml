@@ -10,9 +10,9 @@ metadata:
       [
         {"from":
           {"kind":"ImageStreamTag"
-            , "name":"{{ .Release.Name }}-backend:latest"
+            , "name":"{{ {{ .Release.Name | trimSuffix "-int" }} }}-backend:latest"
           }
-          , "fieldPath":"spec.template.spec.containers[?(@.name==\"{{ .Release.Name }}-backend\")].image"
+          , "fieldPath":"spec.template.spec.containers[?(@.name==\"{{ {{ .Release.Name | trimSuffix "-int" }} }}-backend\")].image"
         }
       ]
 
@@ -21,15 +21,15 @@ spec:
   replicas: {{ .Values.backend.replicas }}
   selector:
     matchLabels:
-      app: {{ .Release.Name }}-backend
+      app: {{ {{ .Release.Name | trimSuffix "-int" }} }}-backend
   template:
     metadata:
       labels:
-        app: {{ .Release.Name }}-backend
+        app: {{ {{ .Release.Name | trimSuffix "-int" }} }}-backend
     spec:
       containers:
-        - name: {{ .Release.Name }}-backend
-          image: {{ .Release.Name }}-backend:latest
+        - name: {{ {{ .Release.Name | trimSuffix "-int" }} }}-backend
+          image: {{ {{ .Release.Name | trimSuffix "-int" }} }}-backend:latest
           ports:
             - containerPort: {{ .Values.backend.containerPort }}
               protocol: TCP
