@@ -1,6 +1,6 @@
+{{- if .Values.backend.enabled -}}
 {{ $name := .Release.Name | trimSuffix "-hom" | trimSuffix "-int" | trimSuffix "-prd"}}
 {{- $name := printf "%s-backend" $name -}}
-{{- if .Values.backend.enabled -}}
 
 kind: Deployment
 apiVersion: apps/v1
