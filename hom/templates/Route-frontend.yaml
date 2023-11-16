@@ -4,7 +4,6 @@ kind: Route
 apiVersion: route.openshift.io/v1
 metadata:
   name: {{ .Values.applicationName }}-frontend
-  namespace: {{ .Values.applicationName }}-hom  
 
 spec:
   host: hom-{{ .Values.applicationName }}-frontend.apps.ocp.sefaz.pe.gov.br

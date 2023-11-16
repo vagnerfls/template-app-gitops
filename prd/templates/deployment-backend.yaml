@@ -4,7 +4,7 @@ kind: Deployment
 apiVersion: apps/v1
 metadata:
   name: {{ .Values.applicationName }}-backend
-  namespace: {{ .Values.applicationName }}-prd
+
   annotations:
     image.openshift.io/triggers: |
       [

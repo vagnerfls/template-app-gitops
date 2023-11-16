@@ -4,7 +4,6 @@ kind: Deployment
 apiVersion: apps/v1
 metadata:
   name: {{ .Values.applicationName }}-frontend
-  namespace: {{ .Values.applicationName }}-hom 
 
   annotations:
     image.openshift.io/triggers: |
