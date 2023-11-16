@@ -1,6 +1,6 @@
 {{- if .Values.backend.route -}}
 {{ $name := .Release.Name | trimSuffix "-hom" | trimSuffix "-int" | trimSuffix "-prd"}}
-{{- if .Values.backend.enabled -}}
+{{- $name := printf "%s-backend" $name -}}
 
 kind: Route
 apiVersion: route.openshift.io/v1
