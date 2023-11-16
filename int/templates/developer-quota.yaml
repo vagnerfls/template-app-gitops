@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ResourceQuota
+
+metadata:
+    name: developer-quota
+    annotations:
+        openshift.io/description: >-
+        Limites totais de recursos que podem ser criados pela equipe de desenvolvimento.
+    
+spec:
+    hard:
+        pods: {{ .Values.quota.pods }}
+        requets.cpu: {{ .Values.quota.cpuRequest }}
+        requests.memory: {{ .Values.quota.memoryRequest }}
+        limits.cpu: {{ .Values.quota.cpuLimit }}
+        limits.memory: {{ .Values.quota.memoryLimit }}

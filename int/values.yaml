@@ -64,3 +64,11 @@ secrets:
         encoded: false
       - name: DB_APP_PASS
         value: "exemplo"
+
+
+quota:
+  pods: 5
+  cpuRequest: 1500m
+  cpuLimit: 1500m
+  memoryRequest: 1500Mi
+  memoryLimit: 1500Mi
