@@ -67,7 +67,7 @@ secrets:
 
 
 quota:
-  pods: 5
+  pods: '5'
   cpuRequest: 1500m
   cpuLimit: 1500m
   memoryRequest: 1500Mi
