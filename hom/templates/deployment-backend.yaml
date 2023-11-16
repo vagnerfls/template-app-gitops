@@ -46,11 +46,9 @@ spec:
 
           {{ if .Values.secrets }}
           {{ range $secret := .Values.secrets }}
-          ---
           envFrom:
             secretGenerator:
               - name: {{ $secret.name }}
-          ---
           {{ end }}
           {{ end }}
 
