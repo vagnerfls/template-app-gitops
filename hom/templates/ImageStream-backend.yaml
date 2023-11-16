@@ -1,6 +1,6 @@
 {{- if .Values.backend.imageStream -}}
 {{ $name := .Release.Name | trimSuffix "-hom" | trimSuffix "-int" | trimSuffix "-prd"}}
-{{- if .Values.backend.enabled -}}
+{{- $name := printf "%s-backend" $name -}}
 
 apiVersion: image.openshift.io/v1
 kind: ImageStream
