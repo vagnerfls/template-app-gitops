@@ -1,15 +1,15 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: template-app-gitops-hom
-  namespace: openshift-gitops
+  name: {{ .Values.applicationName}}-hom
+  namespace: cicd
 spec:
-  project: app
+  project: {{ .Values.applicationName}}-hom
   syncPolicy:
     automated: {}
   destination:
     server: {{ .Values.spec.destination.server }}
-    namespace: app-hom
+    namespace: {{ .Values.applicationName}}-hom
   source:
     path: hom
     repoURL: {{ .Values.spec.source.repoURL }}

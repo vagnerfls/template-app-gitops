@@ -4,3 +4,5 @@ spec:
   source:
     repoURL: https://github.com/vagnerfls/template-app-gitops.git
     targetRevision: HEAD
+
+applicationName: template-app-gitops

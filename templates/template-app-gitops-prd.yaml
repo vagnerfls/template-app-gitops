@@ -1,15 +1,15 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: template-app-gitops-prd
-  namespace: openshift-gitops
+  name: {{ .Values.applicationName}}-prd
+  namespace: cicd
 spec:
-  project: app
+  project: {{ .Values.applicationName}}-prd
   syncPolicy:
     automated: {}
   destination:
     server: {{ .Values.spec.destination.server }}
-    namespace: app-prd
+    namespace: {{ .Values.applicationName}}-prd
   source:
     path: prd
     repoURL: {{ .Values.spec.source.repoURL }}
