@@ -1,16 +1,17 @@
 {{- if .Values.frontend.route -}}
+{{ $name := .Release.Name | trimSuffix "-hom" | trimSuffix "-int" | trimSuffix "-prd"}}
 
 kind: Route
 apiVersion: route.openshift.io/v1
 metadata:
-  name: {{ .Release.Name | trimSuffix "-int" }}-frontend
+  name: {{ $name }}-frontend
 
 
 spec:
-  host: int-{{ .Release.Name | trimSuffix "-int" }}-frontend.apps.ocp.sefaz.pe.gov.br
+  host: int-{{ $name }}-frontend.apps.ocp.sefaz.pe.gov.br
   to:
     kind: Service
-    name: {{ .Release.Name | trimSuffix "-int" }}-frontend
+    name: {{ $name }}-frontend
   port:
     targetPort: http
   tls:

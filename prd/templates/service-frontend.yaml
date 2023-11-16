@@ -1,14 +1,15 @@
 {{- if .Values.frontend.enabled -}}
+{{ $name := .Release.Name | trimSuffix "-hom" | trimSuffix "-int" | trimSuffix "-prd"}}
 
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Values.applicationName }}-frontend
+  name: {{ $name }}-frontend
 
 
 spec:
   selector:
-    app: {{ .Values.applicationName }}-frontend
+    app: {{ $name }}-frontend
   ports:
   - name: http
     port: {{ .Values.frontend.containerPort }}
