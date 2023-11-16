@@ -17,9 +17,16 @@ backend:
     - name: env
       value: >-
         TZ=America/Recife
-        DB_APP_URL=jdbc:exemplo
-        DB_APP_USER=exemplo
-        DB_APP_PASSWORD=exemplo
+
+  secrets:
+    - name: dbsource
+      keys:
+        - name: DB_APP_URL
+          value: "jdbc:exemplo"
+        - name: DB_APP_USER
+          value: "exemplo"
+        - name: DB_APP_PASS
+          value: "exemplo"
 
 frontend:
   enabled: true
