@@ -1,18 +1,21 @@
 {{- if .Values.backend.enabled -}}
 
+{{- if .Release.Name }}
+{{ range $name := .Release.Name | trimSuffix "hom", "int", "prd"}}
+
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-  name: {{ .Values.applicationName }}-backend
+  name: {{ $name }}-backend
 
   annotations:
     image.openshift.io/triggers: |
       [
         {"from":
           {"kind":"ImageStreamTag"
-            , "name":"{{ .Values.applicationName }}-backend:latest"
+            , "name":"{{ $name }}-backend:latest"
           }
-          , "fieldPath":"spec.template.spec.containers[?(@.name==\"{{ .Values.applicationName }}-backend\")].image"
+          , "fieldPath":"spec.template.spec.containers[?(@.name==\"{{ $name }}-backend\")].image"
         }
       ]
 
@@ -20,15 +23,15 @@ spec:
   replicas: {{ .Values.backend.replicas }}
   selector:
     matchLabels:
-      app: {{ .Values.applicationName }}-backend
+      app: {{ $name }}-backend
   template:
     metadata:
       labels:
-        app: {{ .Values.applicationName }}-backend
+        app: {{ $name }}-backend
     spec:
       containers:
-        - name: {{ .Values.applicationName }}-backend
-          image: {{ .Values.applicationName }}-backend:latest
+        - name: {{ $name }}-backend
+          image: {{ $name }}-backend:latest
           ports:
             - containerPort: {{ .Values.backend.containerPort }}
               protocol: TCP
@@ -57,4 +60,6 @@ spec:
           readinessProbe:
             {{- toYaml .Values.backend.readinessProbe | nindent 12}}
 
+{{- end -}}
+{{- end -}}
 {{- end -}}
