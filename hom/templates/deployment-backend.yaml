@@ -46,7 +46,7 @@ spec:
 
           envFrom:
             secretGenerator:
-              - name: {{ $secret.name }}
+              - name: {{ .Values.secrets.name }}
 
           livenessProbe:
             {{- toYaml .Values.backend.livenessProbe | nindent 12}}
