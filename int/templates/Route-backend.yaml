@@ -3,14 +3,14 @@
 kind: Route
 apiVersion: route.openshift.io/v1
 metadata:
-  name: {{ .Values.applicationName }}-backend
+  name: {{ .Release.Name | trimSuffix "-int" }}-backend
 
 
 spec:
-  host: int-{{ .Values.applicationName }}-backend.apps.ocp.sefaz.pe.gov.br
+  host: int-{{ .Release.Name | trimSuffix "-int" }}-backend.apps.ocp.sefaz.pe.gov.br
   to:
     kind: Service
-    name: {{ .Values.applicationName }}-backend
+    name: {{ .Release.Name | trimSuffix "-int" }}-backend
   port:
     targetPort: http
   tls:
