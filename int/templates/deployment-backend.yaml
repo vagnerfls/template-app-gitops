@@ -5,15 +5,15 @@ kind: Deployment
 apiVersion: apps/v1
 metadata:
 
-  name: {{ "%s-backend" $name -}}
+  name: {{- "%s-backend" $name -}}
   annotations:
     image.openshift.io/triggers: |
       [
         {"from":
           {"kind":"ImageStreamTag"
-            , "name":"{{ "%s-backend" $name -}}:latest"
+            , "name":"{{- "%s-backend" $name -}}:latest"
           }
-          , "fieldPath":"spec.template.spec.containers[?(@.name==\"{{ "%s-backend" $name -}}\")].image"
+          , "fieldPath":"spec.template.spec.containers[?(@.name==\"{{- "%s-backend" $name -}}\")].image"
         }
       ]
 
@@ -22,15 +22,15 @@ spec:
   replicas: {{ .Values.backend.replicas }}
   selector:
     matchLabels:
-      app: {{ "%s-backend" $name -}}
+      app: {{- "%s-backend" $name -}}
   template:
     metadata:
       labels:
-        app: {{ "%s-backend" $name -}}
+        app: {{- "%s-backend" $name -}}
     spec:
       containers:
-        - name: {{ "%s-backend" $name -}}
-          image: {{ "%s-backend" $name -}}:latest
+        - name: {{- "%s-backend" $name -}}
+          image: {{- "%s-backend" $name -}}:latest
           ports:
             - containerPort: {{ .Values.backend.containerPort }}
               protocol: TCP
