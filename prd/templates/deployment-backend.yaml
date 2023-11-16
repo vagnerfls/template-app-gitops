@@ -12,7 +12,7 @@ metadata:
           {"kind":"ImageStreamTag"
             , "name":"{{ .Values.applicationName }}-backend:stable"
           }
-          , "fieldPath":"spec.template.spec.containers[?(@.name==\"monitor-front\")].image"
+          , "fieldPath":"spec.template.spec.containers[?(@.name==\"{{ .Values.applicationName }}-backend\")].image"
         }
       ]
 
