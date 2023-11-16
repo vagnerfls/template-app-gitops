@@ -6,6 +6,18 @@ metadata:
   name: {{ .Values.applicationName }}-backend
   namespace: {{ .Values.applicationName }}-int
 
+  annotations:
+    image.openshift.io/triggers: |
+      [
+        {"from":
+          {"kind":"ImageStreamTag"
+            , "name":"{{ .Values.applicationName }}-backend:latest"
+          }
+          , "fieldPath":"spec.template.spec.containers[?(@.name==\"monitor-front\")].image"
+        }
+      ]
+
+
 spec:
   replicas: {{ .Values.backend.replicas }}
   selector:
