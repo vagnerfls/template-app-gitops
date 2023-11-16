@@ -1,6 +1,6 @@
 {{- if .Values.backend.enabled -}}
 {{ $name := .Release.Name | trimSuffix "-hom" | trimSuffix "-int" | trimSuffix "-prd"}}
-{{- $name := printf "%s-frontend" $name -}}
+{{- $name := printf "%s-backend" $name -}}
 
 apiVersion: v1
 kind: Service
