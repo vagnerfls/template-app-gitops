@@ -9,8 +9,8 @@ metadata:
     
 spec:
     hard:
-        pods: {{ .Values.quota.pods }}
-        requets.cpu: {{ .Values.quota.cpuRequest }}
-        requests.memory: {{ .Values.quota.memoryRequest }}
-        limits.cpu: {{ .Values.quota.cpuLimit }}
-        limits.memory: {{ .Values.quota.memoryLimit }}
+        pods: {{ $.Values.quota.pods }}
+        requets.cpu: {{ $.Values.quota.cpuRequest }}
+        requests.memory: {{ $.Values.quota.memoryRequest }}
+        limits.cpu: {{ $.Values.quota.cpuLimit }}
+        limits.memory: {{ $.Values.quota.memoryLimit }}
