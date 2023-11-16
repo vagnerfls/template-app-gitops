@@ -1,7 +1,7 @@
 {{- if .Values.backend.enabled -}}
 
 {{- if .Release.Name }}
-{{ range $name := .Release.Name | trimSuffix "hom"}}
+{{ $name := .Release.Name | trimSuffix "hom"}}
 
 kind: Deployment
 apiVersion: apps/v1
