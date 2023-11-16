@@ -3,16 +3,16 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-  name: {{ .Release.Name | delimeter 3 }}-backend
+  name: {{ .Release.Name }}-backend
 
   annotations:
     image.openshift.io/triggers: |
       [
         {"from":
           {"kind":"ImageStreamTag"
-            , "name":"{{ .Release.Name | delimeter 3 }}-backend:latest"
+            , "name":"{{ .Release.Name }}-backend:latest"
           }
-          , "fieldPath":"spec.template.spec.containers[?(@.name==\"{{ .Release.Name | delimeter 3 }}-backend\")].image"
+          , "fieldPath":"spec.template.spec.containers[?(@.name==\"{{ .Release.Name }}-backend\")].image"
         }
       ]
 
@@ -21,15 +21,15 @@ spec:
   replicas: {{ .Values.backend.replicas }}
   selector:
     matchLabels:
-      app: {{ .Release.Name | delimeter 3 }}-backend
+      app: {{ .Release.Name }}-backend
   template:
     metadata:
       labels:
-        app: {{ .Release.Name | delimeter 3 }}-backend
+        app: {{ .Release.Name }}-backend
     spec:
       containers:
-        - name: {{ .Release.Name | delimeter 3 }}-backend
-          image: {{ .Release.Name | delimeter 3 }}-backend:latest
+        - name: {{ .Release.Name }}-backend
+          image: {{ .Release.Name }}-backend:latest
           ports:
             - containerPort: {{ .Values.backend.containerPort }}
               protocol: TCP
