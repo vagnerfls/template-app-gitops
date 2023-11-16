@@ -41,4 +41,18 @@ spec:
               cpu: {{ .Values.frontend.cpuRequest }}
               memory: {{ .Values.frontend.memoryRequest }}
 
+            livenessProbe:
+              httpGet:
+                path: /{{ .Values.applicationName }}/
+                port: 8080
+              initialDelaySeconds: 3
+              periodSeconds: 3
+            readinessProbe:
+              httpGet:
+                path: /{{ .V }}/
+                port: 8080
+              initialDelaySeconds: 3
+              periodSeconds: 3
+
+
 {{- end -}}

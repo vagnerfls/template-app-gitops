@@ -43,13 +43,12 @@ frontend:
   imageStream: true  
 
 
-
-  secrets:
-    - name: dbsource
-      keys:
-        - name: DB_APP_URL
-          value: "jdbc:exemplo"
-        - name: DB_APP_USER
-          value: "exemplo"
-        - name: DB_APP_PASS
-          value: "exemplo"
+secrets:
+  - name: dbsource
+    keys:
+      - name: DB_APP_URL
+        value: "jdbc:exemplo"
+      - name: DB_APP_USER
+        value: "exemplo"
+      - name: DB_APP_PASS
+        value: "exemplo"
