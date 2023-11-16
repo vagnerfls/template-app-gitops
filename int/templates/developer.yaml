@@ -1,3 +1,5 @@
+{{ $name := .Release.Name | trimSuffix "-hom" | trimSuffix "-int" | trimSuffix "-prd"}}
+
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 
@@ -11,4 +13,4 @@ roleRef:
 subjects:
   - apiGroup: rbac.authorization.k8s.io
     kind: Group
-    name: G_{{ .Values.applicationName | upper }}
+    name: G_{{ $name | upper }}
