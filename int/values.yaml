@@ -1,33 +1,27 @@
-applicationName: templateapps
+# DEFINIR VALORES PARA A CAMADA BACKEND #
 
 backend:
-  enabled: true
-  replicas: 1
-  containerPort: 8080
-  cpuLimit: 600m
-  cpuRequest: 300m
-  memoryLimit: 512Mi
-  memoryRequest: 384Mi
-  route: true
-  imageStream: true
+  enabled: true             # Deve ser habilitado se o projeto contér a chamada frontend
+  replicas: 1               # Quantidade de pods que rodará a aplicação
+  containerPort: 8080       # Porta default para todos projetos
+  cpuLimit: 600m            # Limite de CPU que um pod, pode utilizar. (valor default)
+  cpuRequest: 300m          # Solicitação inicial de CPU para o pod. (valor default)
+  memoryLimit: 512Mi        # Limite de RAM que um pod, pode utilizar. (valor default) 
+  memoryRequest: 384Mi      # Solicitação inicial de RAM para o pod. (valor default)
+  route: true               # Dever ser habilitado quando for utilizar rota para a camada.
+  imageStream: true         # Dever ser habilitado quando for utilizar imagestream para a camada.
   
   
+# DEFINIR VARIAVEIS DE AMBIENTE
   
   env:
     - name: env
       value: >-
         TZ=America/Recife
+        SPRING_PROFILES_ACTIVE=prd
 
-  secrets:
-    - name: dbsource
-      keys:
-        - name: DB_APP_URL
-          value: "jdbc:exemplo"
-        - name: DB_APP_USER
-          value: "exemplo"
-        - name: DB_APP_PASS
-          value: "exemplo"
-  
+# PROBES (VALORES DEFAULT)
+
   livenessProbe:
     initialDelaySeconds: 105
     httpGet:
@@ -39,19 +33,8 @@ backend:
     httpGet:
       path: /actuator/health/readiness
       port: http
-  
-  
-frontend:
-  enabled: true
-  replicas: 1
-  containerPort: 8080
-  cpuLimit: 10m
-  cpuRequest: 10m
-  memoryLimit: 32Mi
-  memoryRequest: 32Mi
-  route: true
-  imageStream: true  
 
+# DEFINIR VARIAVEIS COM VALORES SECRETOS
 
 secrets:
   - name: dbsource
@@ -63,8 +46,23 @@ secrets:
         value: "exemplo"
         encoded: false
       - name: DB_APP_PASS
-        value: "exemplo"
+        value: "exemplo"  
 
+# DEFINIR VALORES PARA A CAMADA FRONTEND #
+
+frontend:
+  enabled: true           # Deve ser habilitado se o projeto contér a chamada frontend
+  replicas: 1             # Quantidade de pods que rodará a aplicação
+  containerPort: 8080     # Porta default para todos projetos
+  cpuLimit: 10m           # Limite de CPU que um pod, pode utilizar. (valor default)
+  cpuRequest: 10m         # Solicitação inicial de CPU para o pod. (valor default)
+  memoryRequest: 32Mi     # Solicitação inicial de RAM para o pod. (valor default)
+  memoryLimit: 32Mi       # Limite de RAM que um pod, pode utilizar. (valor default)
+  route: true             # Dever ser habilitado quando for utilizar rota para a camada.
+  imageStream: true       # Dever ser habilitado quando for utilizar imagestream para a camada.
+
+
+# DEFINIR VALORES LIMITES DE RECURSOS QUE POSSAM SER UTILIZADOS PELO GRUPO DEVELOPER #
 
 quota:
   pods: '5'
